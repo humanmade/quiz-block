@@ -1,0 +1,19 @@
+{
+	"name": "@humanmade/quiz-block",
+	"version": "1.0.0",
+	"description": "Multi-step quiz plugin using Gutenberg blocks",
+	"private": true,
+	"scripts": {
+		"lint:js": "eslint assets/js/",
+		"lint:js:fix": "eslint assets/js/ --fix",
+		"lint:css": "stylelint assets/css/**/*.css",
+		"lint:css:fix": "stylelint assets/css/**/*.css --fix",
+		"lint": "npm run lint:js && npm run lint:css"
+	},
+	"devDependencies": {
+		"@humanmade/eslint-config": "latest",
+		"@humanmade/stylelint-config": "latest",
+		"eslint": "^9.0.0",
+		"stylelint": "^16.0.0"
+	}
+}

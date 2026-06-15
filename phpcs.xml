@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<ruleset name="Quiz Block">
+	<!-- Files to check -->
+	<file>.</file>
+
+	<!-- Show progress and use colors -->
+	<arg name="basepath" value="." />
+	<arg name="colors" />
+	<arg value="sp" />
+
+	<!-- PHP version compatibility -->
+	<config name="testVersion" value="7.4-" />
+
+	<!-- Use HM Coding Standards -->
+	<rule ref="vendor/humanmade/coding-standards" />
+
+	<!-- Exclude generated and third-party directories -->
+	<exclude-pattern>vendor/*</exclude-pattern>
+	<exclude-pattern>node_modules/*</exclude-pattern>
+</ruleset>
