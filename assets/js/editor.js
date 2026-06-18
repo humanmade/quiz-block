@@ -288,6 +288,36 @@
 				} );
 			}
 
+			/**
+			 * Move an alternative up one position in the list.
+			 *
+			 * @param {string} id Alternative ID to move up.
+			 */
+			function moveUp( id ) {
+				let idx = alternatives.findIndex( function ( a ) { return a.id === id; } );
+				if ( idx <= 0 ) return;
+				let next = alternatives.slice();
+				let tmp = next[ idx - 1 ];
+				next[ idx - 1 ] = next[ idx ];
+				next[ idx ] = tmp;
+				setAttributes( { alternatives: next } );
+			}
+
+			/**
+			 * Move an alternative down one position in the list.
+			 *
+			 * @param {string} id Alternative ID to move down.
+			 */
+			function moveDown( id ) {
+				let idx = alternatives.findIndex( function ( a ) { return a.id === id; } );
+				if ( idx === -1 || idx >= alternatives.length - 1 ) return;
+				let next = alternatives.slice();
+				let tmp = next[ idx + 1 ];
+				next[ idx + 1 ] = next[ idx ];
+				next[ idx ] = tmp;
+				setAttributes( { alternatives: next } );
+			}
+
 			return el( 'div', blockProps,
 
 				/* ── 1. Question text ───────────────────────────────── */
@@ -335,7 +365,7 @@
 					'✅ Alternatives — select the radio to mark the correct answer'
 				),
 				el( 'div', { className: 'hmquiz-editor__alternatives' },
-					alternatives.map( function ( alt ) {
+					alternatives.map( function ( alt, altIndex ) {
 						let isCorrect = correctAnswer === alt.id;
 						return el( 'div', {
 							key: alt.id,
@@ -366,6 +396,30 @@
 							},
 						} ),
 						isCorrect && el( 'span', { className: 'hmquiz-editor__alt-correct-badge' }, '✓ Correct' ),
+						el( Button, {
+							icon: 'arrow-up-alt2',
+							isSmall: true,
+							disabled: altIndex === 0,
+							label: 'Move up',
+							/**
+							 *
+							 */
+							onClick: function () {
+								moveUp( alt.id );
+							},
+						} ),
+						el( Button, {
+							icon: 'arrow-down-alt2',
+							isSmall: true,
+							disabled: altIndex === alternatives.length - 1,
+							label: 'Move down',
+							/**
+							 *
+							 */
+							onClick: function () {
+								moveDown( alt.id );
+							},
+						} ),
 						el( Button, {
 							className: 'hmquiz-editor__alt-remove',
 							icon: 'trash',
