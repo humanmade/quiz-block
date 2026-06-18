@@ -13,6 +13,8 @@
 
 declare( strict_types=1 );
 
+namespace HM\QuizBlock;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -20,10 +22,10 @@ defined( 'ABSPATH' ) || exit;
  *
  * @return void
  */
-function hmquiz_load_textdomain(): void {
+function load_textdomain(): void {
 	load_plugin_textdomain( 'hmquiz', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
-add_action( 'init', 'hmquiz_load_textdomain' );
+add_action( 'init', __NAMESPACE__ . '\\load_textdomain' );
 
 /**
  * Prepend the Quiz category to the block inserter category list.
@@ -31,7 +33,7 @@ add_action( 'init', 'hmquiz_load_textdomain' );
  * @param array $categories Existing block categories.
  * @return array Modified block categories.
  */
-function hmquiz_block_categories( array $categories ): array {
+function block_categories( array $categories ): array {
 	return array_merge(
 		[
 			[
@@ -43,14 +45,14 @@ function hmquiz_block_categories( array $categories ): array {
 		$categories
 	);
 }
-add_filter( 'block_categories_all', 'hmquiz_block_categories' );
+add_filter( 'block_categories_all', __NAMESPACE__ . '\\block_categories' );
 
 /**
  * Register scripts, styles, and block types.
  *
  * @return void
  */
-function hmquiz_register_blocks(): void {
+function register_blocks(): void {
 	$plugin_dir = plugin_dir_path( __FILE__ );
 
 	// Editor script (registers all five block types).
@@ -105,7 +107,7 @@ function hmquiz_register_blocks(): void {
 		'editor_script' => 'hmquiz-editor',
 	] );
 }
-add_action( 'init', 'hmquiz_register_blocks' );
+add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
 
 /**
  * Enqueue the frontend interaction script on any page that contains the quiz block.
@@ -114,7 +116,7 @@ add_action( 'init', 'hmquiz_register_blocks' );
  *
  * @return void
  */
-function hmquiz_enqueue_frontend(): void {
+function enqueue_frontend(): void {
 	if ( ! has_block( 'hmquiz/quiz' ) ) {
 		return;
 	}
@@ -129,4 +131,4 @@ function hmquiz_enqueue_frontend(): void {
 		true
 	);
 }
-add_action( 'wp_enqueue_scripts', 'hmquiz_enqueue_frontend' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_frontend' );
