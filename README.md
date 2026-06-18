@@ -43,6 +43,39 @@
   └── [hmquiz/quiz-complete]                  ← optional completion screen
 ```
 
+## How It Works
+
+The plugin adds five custom Gutenberg blocks. When a visitor opens a page containing a quiz, JavaScript takes over: it shows one question at a time, updates a progress bar, reveals feedback after each answer, and shows a completion screen at the end — all without any page reload.
+
+## Creating a Quiz
+
+### 1. Add the Quiz block
+
+In the block inserter, search for **Quiz** (under the _Quiz_ category) and add it to your post or page. This is the outer container — all other quiz blocks live inside it.
+
+### 2. Add questions
+
+Inside the Quiz block, add one or more **Quiz Question** blocks. Each question has:
+
+- **Question text** — a rich-text field at the top of the block.
+- **Alternatives** — multiple-choice options listed below the question text. Click **Add Alternative** to add more. Use the ↑ / ↓ arrows to reorder them. Select the radio button next to an option to mark it as the correct answer.
+- **Question Content** _(optional)_ — an inner section where you can add any WordPress block (image, video, paragraph, etc.) to accompany the question. It appears between the question text and the answer choices on the frontend.
+- **Correct / Incorrect Feedback** — two inner panels where you can add any blocks. The matching panel is shown to the visitor after they answer.
+
+### 3. Add a completion screen _(optional)_
+
+After your last Question block, add the **Quiz Completion Screen** block. You can:
+
+- Write any content inside it (heading, paragraph, image, etc.).
+- Toggle it on or off in the block settings sidebar.
+- Pick a background colour in the sidebar.
+
+If you don't add this block (or toggle it off), the quiz simply ends silently after the last question.
+
+### 4. Publish
+
+Save or publish the post. The quiz is fully interactive on the frontend — no shortcodes, no page builders, no configuration needed.
+
 ## Requirements
 
 - WordPress 5.9+
