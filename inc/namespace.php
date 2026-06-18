@@ -31,8 +31,8 @@ function load_textdomain(): void {
 /**
  * Prepend the Quiz category to the block inserter category list.
  *
- * @param array $categories Existing block categories.
- * @return array Modified block categories.
+ * @param array<int, array<string, string>> $categories Existing block categories.
+ * @return array<int, array<string, string>> Modified block categories.
  */
 function block_categories( array $categories ): array {
 	return array_merge(
