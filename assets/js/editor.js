@@ -294,7 +294,9 @@
 			 * @param {string} id Alternative ID to move up.
 			 */
 			function moveUp( id ) {
-				let idx = alternatives.findIndex( function ( a ) { return a.id === id; } );
+				let idx = alternatives.findIndex( function ( a ) {
+					return a.id === id;
+				} );
 				if ( idx <= 0 ) return;
 				let next = alternatives.slice();
 				let tmp = next[ idx - 1 ];
@@ -309,7 +311,9 @@
 			 * @param {string} id Alternative ID to move down.
 			 */
 			function moveDown( id ) {
-				let idx = alternatives.findIndex( function ( a ) { return a.id === id; } );
+				let idx = alternatives.findIndex( function ( a ) {
+					return a.id === id;
+				} );
 				if ( idx === -1 || idx >= alternatives.length - 1 ) return;
 				let next = alternatives.slice();
 				let tmp = next[ idx + 1 ];
