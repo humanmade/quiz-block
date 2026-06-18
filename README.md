@@ -21,6 +21,12 @@
 	</tr>
 </table>
 
+
+
+https://github.com/user-attachments/assets/1146033f-d0f2-4f80-9517-635314ab15be
+
+
+
 ## Features
 
 - One question at a time with animated progress bar
@@ -55,14 +61,25 @@ In the block inserter, search for **Quiz** (under the _Quiz_ category) and add i
 
 ### 2. Add questions
 
+<img width="848" height="697" alt="question" src="https://github.com/user-attachments/assets/b75e22c1-7778-42fd-95a5-3faaf326daed" />
+
+
 Inside the Quiz block, add one or more **Quiz Question** blocks. Each question has:
 
 - **Question text** — a rich-text field at the top of the block.
 - **Alternatives** — multiple-choice options listed below the question text. Click **Add Alternative** to add more. Use the ↑ / ↓ arrows to reorder them. Select the radio button next to an option to mark it as the correct answer.
+<img width="1248" height="519" alt="iScreen Shoter - Google Chrome - 260618111606" src="https://github.com/user-attachments/assets/e038d981-5753-4441-9422-0153e3f8cf0c" />
+
 - **Question Content** _(optional)_ — an inner section where you can add any WordPress block (image, video, paragraph, etc.) to accompany the question. It appears between the question text and the answer choices on the frontend.
+<img width="848" height="697" alt="content" src="https://github.com/user-attachments/assets/1b0dfd79-35d7-4007-a41d-c26e6b714bf2" />
+
+
 - **Correct / Incorrect Feedback** — two inner panels where you can add any blocks. The matching panel is shown to the visitor after they answer.
+<img width="1248" height="519" alt="iScreen Shoter - Google Chrome - 260618111606" src="https://github.com/user-attachments/assets/3d3e3276-cc2a-4da6-af58-de68711e4f8f" />
 
 ### 3. Add a completion screen _(optional)_
+<img width="1605" height="907" alt="iScreen Shoter - Google Chrome - 260618112141" src="https://github.com/user-attachments/assets/df9de279-17a0-422c-b577-b246ab419222" />
+
 
 After your last Question block, add the **Quiz Completion Screen** block. You can:
 
@@ -71,6 +88,8 @@ After your last Question block, add the **Quiz Completion Screen** block. You ca
 - Pick a background colour in the sidebar.
 
 If you don't add this block (or toggle it off), the quiz simply ends silently after the last question.
+<img width="562" height="906" alt="iScreen Shoter - Google Chrome - 260618112150" src="https://github.com/user-attachments/assets/58527051-2a0c-46e9-8edc-95cf0e026cf9" />
+
 
 ### 4. Publish
 
