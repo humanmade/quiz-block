@@ -3,7 +3,7 @@
 	<tr>
 		<td align="left" width="70%">
 			<strong>Quiz Block</strong><br />
-			Multi-step quiz plugin using Gutenberg blocks. No build step required.
+			Multi-step quiz plugin using Gutenberg blocks.
 		</td>
 		<td align="center" width="30%">
 			<a href="https://github.com/humanmade/quiz-block/actions/workflows/lint.yml">
@@ -34,7 +34,6 @@ https://github.com/user-attachments/assets/1146033f-d0f2-4f80-9517-635314ab15be
 - Correct/incorrect feedback panels — supports any core WordPress block (paragraphs, images, videos, etc.)
 - Optional supplementary content block between question and choices
 - Customisable completion screen with show/hide toggle and background colour picker
-- No build step — plain JavaScript using `window.wp` globals
 - Full i18n support
 - Accessible: `:focus-visible`, ARIA attributes, `prefers-reduced-motion`
 
@@ -111,6 +110,7 @@ Download the latest release ZIP from the [Releases](../../releases) page, then i
 ```bash
 composer install
 npm install
+npm run build
 ```
 
 ### Linting
@@ -122,10 +122,10 @@ composer lint
 # PHP (PHPStan level 8)
 composer phpstan
 
-# JavaScript (ESLint with @humanmade/eslint-config)
+# JavaScript (ESLint)
 npm run lint:js
 
-# CSS (Stylelint with @humanmade/stylelint-config)
+# CSS (Stylelint)
 npm run lint:css
 
 # All at once
