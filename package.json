@@ -3,17 +3,17 @@
 	"version": "1.0.0",
 	"description": "Multi-step quiz plugin using Gutenberg blocks",
 	"private": true,
+	"author": "Human Made Limited",
+	"license": "GPL-2.0-or-later",
 	"scripts": {
-		"lint:js": "eslint assets/js/",
-		"lint:js:fix": "eslint assets/js/ --fix",
-		"lint:css": "stylelint assets/css/**/*.css",
-		"lint:css:fix": "stylelint assets/css/**/*.css --fix",
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"format": "wp-scripts format",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style",
 		"lint": "npm run lint:js && npm run lint:css"
 	},
-	"devDependencies": {
-		"@humanmade/eslint-config": "latest",
-		"@humanmade/stylelint-config": "latest",
-		"eslint": "^9.0.0",
-		"stylelint": "^16.0.0"
+	"dependencies": {
+		"@wordpress/scripts": "^28.6.0"
 	}
 }

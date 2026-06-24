@@ -1,20 +1,4 @@
-# Dependencies
-node_modules/
-vendor/
+node_modules
 
-# Build artifacts
-*.zip
-
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Environment
-.env
-.env.local
+/build/
+/vendor/

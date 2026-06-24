@@ -20,6 +20,18 @@ jobs:
         id: version
         run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build
+
       - name: Build release ZIP
         run: |
           mkdir -p dist
@@ -29,6 +41,7 @@ jobs:
             --exclude="vendor/*" \
             --exclude=".github/*" \
             --exclude="dist/*" \
+            --exclude="src/*" \
             --exclude="composer.json" \
             --exclude="composer.lock" \
             --exclude="package.json" \

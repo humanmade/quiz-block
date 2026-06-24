@@ -7,12 +7,17 @@
  * Requires at least: 5.9
  * Requires PHP:      7.4
  * Author:            Human Made
- * License:           GPL-2.0+
+ * License:           GPL-2.0-or-later
  * Text Domain:       hmquiz
+ *
+ * @package           hmquiz
  */
 
-defined( 'ABSPATH' ) || exit;
+namespace HM\QuizBlock;
+
+const PLUGIN_FILE = __FILE__;
+const ROOT_DIR    = __DIR__;
 
 require_once __DIR__ . '/inc/namespace.php';
 
-HM\QuizBlock\bootstrap();
+bootstrap();

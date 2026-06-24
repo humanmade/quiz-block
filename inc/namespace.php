@@ -1,6 +1,8 @@
 <?php
 /**
- * Core plugin functions.
+ * Quiz Block core functions.
+ *
+ * @package hmquiz
  */
 
 declare( strict_types=1 );
@@ -8,7 +10,7 @@ declare( strict_types=1 );
 namespace HM\QuizBlock;
 
 /**
- * Register all plugin hooks.
+ * Connect namespace functions to WordPress hooks.
  *
  * @return void
  */
@@ -25,7 +27,7 @@ function bootstrap(): void {
  * @return void
  */
 function load_textdomain(): void {
-	load_plugin_textdomain( 'hmquiz', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'hmquiz', false, dirname( plugin_basename( PLUGIN_FILE ) ) . '/languages' );
 }
 
 /**
@@ -48,71 +50,42 @@ function block_categories( array $categories ): array {
 }
 
 /**
- * Register scripts, styles, and block types.
+ * Register shared styles and all block types from their block.json metadata.
  *
  * @return void
  */
 function register_blocks(): void {
-	$plugin_dir = plugin_dir_path( __DIR__ );
-	$plugin_url = plugins_url( '', __DIR__ );
-
-	// Editor script (registers all five block types).
-	wp_register_script(
-		'hmquiz-editor',
-		$plugin_url . '/assets/js/editor.js',
-		[ 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n' ],
-		(string) ( filemtime( $plugin_dir . 'assets/js/editor.js' ) ?: time() ),
-		false // Must load in <head> so blocks are registered before the editor initialises.
-	);
-
-	// Editor styles.
-	wp_register_style(
-		'hmquiz-editor-style',
-		$plugin_url . '/assets/css/editor.css',
-		[ 'wp-edit-blocks' ],
-		(string) ( filemtime( $plugin_dir . 'assets/css/editor.css' ) ?: time() )
-	);
-
-	// Frontend styles (also loaded in the editor so previews look right).
+	// Shared styles — registered here so block.json can reference them by handle.
 	wp_register_style(
 		'hmquiz-style',
-		$plugin_url . '/assets/css/frontend.css',
+		plugins_url( 'assets/css/frontend.css', PLUGIN_FILE ),
 		[],
-		(string) ( filemtime( $plugin_dir . 'assets/css/frontend.css' ) ?: time() )
+		(string) ( filemtime( ROOT_DIR . '/assets/css/frontend.css' ) ?: time() )
 	);
 
-	// Quiz container block.
-	register_block_type( 'hmquiz/quiz', [
-		'editor_script' => 'hmquiz-editor',
-		'editor_style'  => 'hmquiz-editor-style',
-		'style'         => 'hmquiz-style',
-	] );
+	wp_register_style(
+		'hmquiz-editor-style',
+		plugins_url( 'assets/css/editor.css', PLUGIN_FILE ),
+		[ 'wp-edit-blocks' ],
+		(string) ( filemtime( ROOT_DIR . '/assets/css/editor.css' ) ?: time() )
+	);
 
-	// Question block.
-	register_block_type( 'hmquiz/question', [
-		'editor_script' => 'hmquiz-editor',
-	] );
+	// Register each block from its compiled block.json in build/.
+	$blocks = [
+		'quiz',
+		'question',
+		'question-content',
+		'feedback',
+		'quiz-complete',
+	];
 
-	// Feedback block.
-	register_block_type( 'hmquiz/feedback', [
-		'editor_script' => 'hmquiz-editor',
-	] );
-
-	// Question supplementary content block.
-	register_block_type( 'hmquiz/question-content', [
-		'editor_script' => 'hmquiz-editor',
-	] );
-
-	// Completion screen block.
-	register_block_type( 'hmquiz/quiz-complete', [
-		'editor_script' => 'hmquiz-editor',
-	] );
+	foreach ( $blocks as $block ) {
+		register_block_type( ROOT_DIR . '/build/' . $block );
+	}
 }
 
 /**
- * Enqueue the frontend interaction script on any page that contains the quiz block.
- *
- * Note: has_block() covers all template types — singular, archive, custom queries.
+ * Enqueue the frontend interaction script on any page containing the quiz block.
  *
  * @return void
  */
@@ -121,14 +94,11 @@ function enqueue_frontend(): void {
 		return;
 	}
 
-	$plugin_dir = plugin_dir_path( __DIR__ );
-	$plugin_url = plugins_url( '', __DIR__ );
-
 	wp_enqueue_script(
 		'hmquiz-frontend',
-		$plugin_url . '/assets/js/frontend.js',
+		plugins_url( 'assets/js/frontend.js', PLUGIN_FILE ),
 		[],
-		(string) ( filemtime( $plugin_dir . 'assets/js/frontend.js' ) ?: time() ),
+		(string) ( filemtime( ROOT_DIR . '/assets/js/frontend.js' ) ?: time() ),
 		true
 	);
 }
