@@ -27,7 +27,7 @@ function bootstrap(): void {
  * @return void
  */
 function load_textdomain(): void {
-	load_plugin_textdomain( 'hmquiz', false, dirname( plugin_basename( PLUGIN_FILE ) ) . '/languages' );
+	load_plugin_textdomain( 'hmquiz', false, dirname( plugin_basename( HMQUIZ_FILE ) ) . '/languages' );
 }
 
 /**
@@ -58,16 +58,16 @@ function register_blocks(): void {
 	// Shared styles — registered here so block.json can reference them by handle.
 	wp_register_style(
 		'hmquiz-style',
-		plugins_url( 'assets/css/frontend.css', PLUGIN_FILE ),
+		plugins_url( 'assets/css/frontend.css', HMQUIZ_FILE ),
 		[],
-		(string) ( filemtime( ROOT_DIR . '/assets/css/frontend.css' ) ?: time() )
+		(string) ( filemtime( HMQUIZ_DIR . '/assets/css/frontend.css' ) ?: time() )
 	);
 
 	wp_register_style(
 		'hmquiz-editor-style',
-		plugins_url( 'assets/css/editor.css', PLUGIN_FILE ),
+		plugins_url( 'assets/css/editor.css', HMQUIZ_FILE ),
 		[ 'wp-edit-blocks' ],
-		(string) ( filemtime( ROOT_DIR . '/assets/css/editor.css' ) ?: time() )
+		(string) ( filemtime( HMQUIZ_DIR . '/assets/css/editor.css' ) ?: time() )
 	);
 
 	// Register each block from its compiled block.json in build/.
@@ -80,7 +80,17 @@ function register_blocks(): void {
 	];
 
 	foreach ( $blocks as $block ) {
-		register_block_type( ROOT_DIR . '/build/' . $block );
+		register_block_type( HMQUIZ_DIR . '/build/' . $block );
+	}
+
+	// Load JS translations for blocks that use wp.i18n (__).
+	$translated_blocks = [ 'question', 'quiz-complete' ];
+	foreach ( $translated_blocks as $block ) {
+		wp_set_script_translations(
+			'hmquiz-' . $block . '-editor-script',
+			'hmquiz',
+			HMQUIZ_DIR . '/languages'
+		);
 	}
 }
 
@@ -96,9 +106,9 @@ function enqueue_frontend(): void {
 
 	wp_enqueue_script(
 		'hmquiz-frontend',
-		plugins_url( 'assets/js/frontend.js', PLUGIN_FILE ),
+		plugins_url( 'assets/js/frontend.js', HMQUIZ_FILE ),
 		[],
-		(string) ( filemtime( ROOT_DIR . '/assets/js/frontend.js' ) ?: time() ),
+		(string) ( filemtime( HMQUIZ_DIR . '/assets/js/frontend.js' ) ?: time() ),
 		true
 	);
 }

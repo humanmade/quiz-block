@@ -13,11 +13,11 @@
  * @package           hmquiz
  */
 
-namespace HM\QuizBlock;
+defined( 'ABSPATH' ) || exit;
 
-const PLUGIN_FILE = __FILE__;
-const ROOT_DIR    = __DIR__;
+define( 'HMQUIZ_FILE', __FILE__ );
+define( 'HMQUIZ_DIR', __DIR__ );
 
 require_once __DIR__ . '/inc/namespace.php';
 
-bootstrap();
+HM\QuizBlock\bootstrap();

@@ -5,4 +5,4 @@ parameters:
         - inc/
     ignoreErrors:
         # WordPress functions are not available in static analysis without stubs.
-        - '#Function (defined|add_filter|add_action|load_plugin_textdomain|register_block_type|wp_register_script|wp_register_style|wp_enqueue_script|plugins_url|plugin_dir_path|plugin_basename|has_block|__) not found\.#'
+        - '#Function (defined|add_filter|add_action|load_plugin_textdomain|register_block_type|wp_register_script|wp_register_style|wp_enqueue_script|wp_set_script_translations|plugins_url|plugin_dir_path|plugin_basename|has_block|__) not found\.#'

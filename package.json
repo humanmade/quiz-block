@@ -13,7 +13,8 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint": "npm run lint:js && npm run lint:css"
 	},
-	"dependencies": {
-		"@wordpress/scripts": "^28.6.0"
+	"devDependencies": {
+		"@wordpress/scripts": "^28.6.0",
+		"@babel/runtime": "^8.0.0"
 	}
 }

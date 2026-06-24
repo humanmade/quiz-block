@@ -14,7 +14,13 @@
 	<!-- Use HM Coding Standards -->
 	<rule ref="vendor/humanmade/coding-standards" />
 
+	<!-- The main plugin bootstrap file intentionally has side-effects (define, require, bootstrap call). -->
+	<rule ref="PSR1.Files.SideEffects">
+		<exclude-pattern>quiz-block-plugin.php</exclude-pattern>
+	</rule>
+
 	<!-- Exclude generated and third-party directories -->
 	<exclude-pattern>vendor/*</exclude-pattern>
 	<exclude-pattern>node_modules/*</exclude-pattern>
+	<exclude-pattern>build/*</exclude-pattern>
 </ruleset>
