@@ -7,28 +7,28 @@ import { useBlockProps, RichText, InnerBlocks } from '@wordpress/block-editor';
  * @param {Object} props.attributes
  * @return {Element} Saved HTML element.
  */
-export default function Save( { attributes } ) {
+export default function Save({ attributes }) {
 	const { question, alternatives, correctAnswer } = attributes;
-	const blockProps = useBlockProps.save( { className: 'hmquiz__question' } );
+	const blockProps = useBlockProps.save({ className: 'hmquiz__question' });
 
 	return (
-		<div { ...blockProps } data-question="" data-correct={ correctAnswer }>
+		<div {...blockProps} data-question="" data-correct={correctAnswer}>
 			<RichText.Content
 				tagName="p"
 				className="hmquiz__question-text"
-				value={ question }
+				value={question}
 			/>
 			<InnerBlocks.Content />
 			<div className="hmquiz__alternatives">
-				{ alternatives.map( ( alt ) => (
+				{alternatives.map((alt) => (
 					<button
-						key={ alt.id }
+						key={alt.id}
 						className="hmquiz__alternative"
-						data-id={ alt.id }
+						data-id={alt.id}
 					>
-						{ alt.text }
+						{alt.text}
 					</button>
-				) ) }
+				))}
 			</div>
 		</div>
 	);

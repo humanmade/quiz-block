@@ -1,13 +1,13 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "hmquiz/question-content",
-    "version": "1.0.0",
-    "title": "Question Content",
-    "category": "hmquiz",
-    "icon": "format-image",
-    "description": "Optional content (image, video, text…) shown between the question and the answer choices.",
-    "parent": [ "hmquiz/question" ],
-    "supports": { "html": false, "reusable": false },
-    "editorScript": "file:./index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hmquiz/question-content",
+	"version": "1.0.0",
+	"title": "Question Content",
+	"category": "hmquiz",
+	"icon": "format-image",
+	"description": "Optional content (image, video, text…) shown between the question and the answer choices.",
+	"parent": ["hmquiz/question"],
+	"supports": { "html": false, "reusable": false },
+	"editorScript": "file:./index.js"
 }

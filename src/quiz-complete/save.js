@@ -7,17 +7,17 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
  * @param {Object} props.attributes
  * @return {Element} Saved HTML element.
  */
-export default function Save( { attributes } ) {
+export default function Save({ attributes }) {
 	const { enabled, backgroundColor } = attributes;
-	const blockProps = useBlockProps.save( { className: 'hmquiz__complete' } );
+	const blockProps = useBlockProps.save({ className: 'hmquiz__complete' });
 
 	return (
 		<div
-			{ ...blockProps }
+			{...blockProps}
 			data-quiz-complete=""
-			data-enabled={ enabled ? 'true' : 'false' }
-			data-bg={ backgroundColor || '' }
-			style={ { display: 'none' } }
+			data-enabled={enabled ? 'true' : 'false'}
+			data-bg={backgroundColor || ''}
+			style={{ display: 'none' }}
 		>
 			<InnerBlocks.Content />
 		</div>
