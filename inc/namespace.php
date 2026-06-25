@@ -55,14 +55,6 @@ function block_categories( array $categories ): array {
  * @return void
  */
 function register_blocks(): void {
-	// Shared styles — registered here so block.json can reference them by handle.
-	wp_register_style(
-		'hmquiz-style',
-		plugins_url( 'assets/css/frontend.css', HMQUIZ_FILE ),
-		[],
-		(string) ( filemtime( HMQUIZ_DIR . '/assets/css/frontend.css' ) ?: time() )
-	);
-
 	wp_register_style(
 		'hmquiz-editor-style',
 		plugins_url( 'assets/css/editor.css', HMQUIZ_FILE ),

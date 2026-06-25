@@ -6,7 +6,7 @@
 	"title": "Quiz Feedback",
 	"category": "hmquiz",
 	"icon": "format-chat",
-	"parent": ["hmquiz/question"],
+	"parent": [ "hmquiz/question" ],
 	"supports": { "html": false, "reusable": false },
 	"attributes": {
 		"type": { "type": "string", "default": "correct" }

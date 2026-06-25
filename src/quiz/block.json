@@ -8,7 +8,7 @@
 	"icon": "list-view",
 	"description": "Multi-step quiz container. Add Quiz Question blocks inside.",
 	"supports": { "html": false },
-	"style": "hmquiz-style",
+	"viewStyle": "file:./style-index.css",
 	"editorStyle": "hmquiz-editor-style",
 	"editorScript": "file:./index.js",
 	"example": {

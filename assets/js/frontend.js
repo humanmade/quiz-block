@@ -10,14 +10,14 @@
  * attribute) because display:flex on .hmquiz__question overrides the UA rule
  * [hidden]{display:none}.
  */
-(function () {
+( function () {
 	'use strict';
 
 	/**
 	 * Find all quiz containers on the page and initialise each one.
 	 */
 	function init() {
-		document.querySelectorAll('[data-hmquiz]').forEach(initQuiz);
+		document.querySelectorAll( '[data-hmquiz]' ).forEach( initQuiz );
 	}
 
 	/**
@@ -25,11 +25,11 @@
 	 *
 	 * @param {HTMLElement} quizEl The quiz container element.
 	 */
-	function initQuiz(quizEl) {
+	function initQuiz( quizEl ) {
 		const questions = Array.prototype.slice.call(
-			quizEl.querySelectorAll('[data-question]')
+			quizEl.querySelectorAll( '[data-question]' )
 		);
-		if (!questions.length) {
+		if ( ! questions.length ) {
 			return;
 		}
 
@@ -38,8 +38,8 @@
 
 		// ── Completion block ─────────────────────────────────────────────────
 		// Hide it at startup; showCompletion() will reveal it when appropriate.
-		const customComplete = quizEl.querySelector('[data-quiz-complete]');
-		if (customComplete) {
+		const customComplete = quizEl.querySelector( '[data-quiz-complete]' );
+		if ( customComplete ) {
 			customComplete.style.display = 'none';
 		}
 
@@ -56,41 +56,28 @@
 				total +
 				'</strong></p>'
 		);
-		quizEl.insertBefore(progressEl, quizEl.firstChild);
+		quizEl.insertBefore( progressEl, quizEl.firstChild );
 
-		const progressFill = progressEl.querySelector('.hmquiz__progress-fill');
-		const progressBar = progressEl.querySelector('.hmquiz__progress-bar');
-		const currentNumEl = progressEl.querySelector('.hmquiz__current-num');
+		const progressFill = progressEl.querySelector(
+			'.hmquiz__progress-fill'
+		);
+		const progressBar = progressEl.querySelector( '.hmquiz__progress-bar' );
+		const currentNumEl = progressEl.querySelector( '.hmquiz__current-num' );
 
 		// ── Per-question setup ───────────────────────────────────────────────
-		questions.forEach(function (questionEl, index) {
-			// Tag supplementary content (from hmquiz/question-content block and
-			// any other blocks added directly in the question's InnerBlocks)
-			// so CSS can position them between question text and alternatives.
-			Array.prototype.slice
-				.call(questionEl.children)
-				.forEach(function (child) {
-					if (
-						!child.classList.contains('hmquiz__question-text') &&
-						!child.classList.contains('hmquiz__alternatives') &&
-						!child.hasAttribute('data-feedback')
-					) {
-						child.setAttribute('data-question-supplementary', '');
-					}
-				});
-
+		questions.forEach( function ( questionEl, index ) {
 			// Hide all questions except the first via style.display (not hidden attr).
-			if (index > 0) {
+			if ( index > 0 ) {
 				questionEl.style.display = 'none';
 			}
 
 			// Hide all feedback panels (save function already outputs style="display:none";
 			// this is a safety net).
 			Array.prototype.slice
-				.call(questionEl.querySelectorAll('[data-feedback]'))
-				.forEach(function (fb) {
+				.call( questionEl.querySelectorAll( '[data-feedback]' ) )
+				.forEach( function ( fb ) {
 					fb.style.display = 'none';
-				});
+				} );
 
 			// Next / Finish button (hidden until the user answers).
 			const isLast = index === total - 1;
@@ -102,21 +89,21 @@
 				},
 				isLast ? 'Finish Quiz' : 'Next Question →'
 			);
-			questionEl.appendChild(nextBtn);
+			questionEl.appendChild( nextBtn );
 
 			// Alternative click.
 			Array.prototype.slice
-				.call(questionEl.querySelectorAll('.hmquiz__alternative'))
-				.forEach(function (altBtn) {
-					altBtn.addEventListener('click', function () {
-						if (questionEl.getAttribute('data-answered')) {
+				.call( questionEl.querySelectorAll( '.hmquiz__alternative' ) )
+				.forEach( function ( altBtn ) {
+					altBtn.addEventListener( 'click', function () {
+						if ( questionEl.getAttribute( 'data-answered' ) ) {
 							return;
 						}
-						questionEl.setAttribute('data-answered', '1');
+						questionEl.setAttribute( 'data-answered', '1' );
 
 						const correctId =
-							questionEl.getAttribute('data-correct');
-						const selectedId = altBtn.getAttribute('data-id');
+							questionEl.getAttribute( 'data-correct' );
+						const selectedId = altBtn.getAttribute( 'data-id' );
 						const isCorrect = selectedId === correctId;
 
 						// Mark alternatives.
@@ -126,20 +113,22 @@
 									'.hmquiz__alternative'
 								)
 							)
-							.forEach(function (btn) {
+							.forEach( function ( btn ) {
 								btn.disabled = true;
-								if (btn.getAttribute('data-id') === correctId) {
+								if (
+									btn.getAttribute( 'data-id' ) === correctId
+								) {
 									btn.classList.add(
 										'hmquiz__alternative--correct'
 									);
 								} else if (
-									btn.getAttribute('data-id') === selectedId
+									btn.getAttribute( 'data-id' ) === selectedId
 								) {
 									btn.classList.add(
 										'hmquiz__alternative--incorrect'
 									);
 								}
-							});
+							} );
 
 						// Reveal feedback.
 						const feedbackType = isCorrect
@@ -148,7 +137,7 @@
 						const feedbackEl = questionEl.querySelector(
 							'[data-feedback="' + feedbackType + '"]'
 						);
-						if (feedbackEl) {
+						if ( feedbackEl ) {
 							feedbackEl.style.display = '';
 							feedbackEl.classList.add(
 								'hmquiz__feedback--visible'
@@ -157,18 +146,18 @@
 
 						// Show next/finish button.
 						nextBtn.style.display = '';
-						nextBtn.classList.add('hmquiz__next-btn--visible');
-					});
-				});
+						nextBtn.classList.add( 'hmquiz__next-btn--visible' );
+					} );
+				} );
 
 			// Next button click.
-			nextBtn.addEventListener('click', function () {
-				if (!isLast) {
+			nextBtn.addEventListener( 'click', function () {
+				if ( ! isLast ) {
 					questionEl.style.display = 'none';
 					current++;
-					const nextQ = questions[current];
+					const nextQ = questions[ current ];
 					nextQ.style.display = '';
-					nextQ.classList.add('hmquiz__question--enter');
+					nextQ.classList.add( 'hmquiz__question--enter' );
 					updateProgress(
 						progressFill,
 						progressBar,
@@ -176,10 +165,10 @@
 						current,
 						total
 					);
-					quizEl.scrollIntoView({
+					quizEl.scrollIntoView( {
 						behavior: 'smooth',
 						block: 'start',
-					});
+					} );
 				} else {
 					showCompletion(
 						quizEl,
@@ -189,10 +178,10 @@
 						customComplete
 					);
 				}
-			});
-		});
+			} );
+		} );
 
-		updateProgress(progressFill, progressBar, currentNumEl, 0, total);
+		updateProgress( progressFill, progressBar, currentNumEl, 0, total );
 	}
 
 	// ─────────────────────────────────────────────────────────────────────────
@@ -206,15 +195,15 @@
 	 * @param {number}           current Zero-based index of the active question.
 	 * @param {number}           total   Total number of questions.
 	 */
-	function updateProgress(fill, bar, numEl, current, total) {
-		const pct = Math.round((current / total) * 100);
-		if (fill) {
+	function updateProgress( fill, bar, numEl, current, total ) {
+		const pct = Math.round( ( current / total ) * 100 );
+		if ( fill ) {
 			fill.style.width = pct + '%';
 		}
-		if (bar) {
-			bar.setAttribute('aria-valuenow', current + 1);
+		if ( bar ) {
+			bar.setAttribute( 'aria-valuenow', current + 1 );
 		}
-		if (numEl) {
+		if ( numEl ) {
 			numEl.textContent = current + 1;
 		}
 	}
@@ -230,33 +219,33 @@
 	 * @param {HTMLElement|null} bar            Progress bar element.
 	 * @param {HTMLElement|null} customComplete The [data-quiz-complete] block, or null.
 	 */
-	function showCompletion(quizEl, questions, fill, bar, customComplete) {
+	function showCompletion( quizEl, questions, fill, bar, customComplete ) {
 		// Hide all questions.
-		questions.forEach(function (q) {
+		questions.forEach( function ( q ) {
 			q.style.display = 'none';
-		});
+		} );
 
 		// Fill progress to 100 %.
-		if (fill) {
+		if ( fill ) {
 			fill.style.width = '100%';
 		}
-		if (bar) {
-			bar.setAttribute('aria-valuenow', questions.length);
+		if ( bar ) {
+			bar.setAttribute( 'aria-valuenow', questions.length );
 		}
 
-		if (customComplete) {
+		if ( customComplete ) {
 			// Use the editor-defined completion screen if it's enabled.
-			if (customComplete.getAttribute('data-enabled') !== 'false') {
-				const bg = customComplete.getAttribute('data-bg');
-				if (bg) {
+			if ( customComplete.getAttribute( 'data-enabled' ) !== 'false' ) {
+				const bg = customComplete.getAttribute( 'data-bg' );
+				if ( bg ) {
 					customComplete.style.backgroundColor = bg;
 				}
 				customComplete.style.display = '';
-				customComplete.classList.add('hmquiz__complete--visible');
-				quizEl.scrollIntoView({
+				customComplete.classList.add( 'hmquiz__complete--visible' );
+				quizEl.scrollIntoView( {
 					behavior: 'smooth',
 					block: 'start',
-				});
+				} );
 			}
 			// If disabled: quiz ends silently (no completion UI).
 		} else {
@@ -269,14 +258,14 @@
 					'<p class="hmquiz__completion-message">You answered all ' +
 					questions.length +
 					' question' +
-					(questions.length !== 1 ? 's' : '') +
+					( questions.length !== 1 ? 's' : '' ) +
 					'.</p>'
 			);
-			quizEl.appendChild(fallback);
-			quizEl.scrollIntoView({
+			quizEl.appendChild( fallback );
+			quizEl.scrollIntoView( {
 				behavior: 'smooth',
 				block: 'start',
-			});
+			} );
 		}
 	}
 
@@ -292,26 +281,26 @@
 	 * @param {Object}           props
 	 * @param {string|undefined} html
 	 */
-	function makeEl(tag, props, html) {
-		const el = document.createElement(tag);
-		Object.keys(props || {}).forEach(function (k) {
-			if (k === 'className') {
-				el.className = props[k];
-			} else if (k === 'style') {
-				el.style.cssText = props[k];
+	function makeEl( tag, props, html ) {
+		const el = document.createElement( tag );
+		Object.keys( props || {} ).forEach( function ( k ) {
+			if ( k === 'className' ) {
+				el.className = props[ k ];
+			} else if ( k === 'style' ) {
+				el.style.cssText = props[ k ];
 			} else {
-				el.setAttribute(k, props[k]);
+				el.setAttribute( k, props[ k ] );
 			}
-		});
-		if (html !== undefined) {
+		} );
+		if ( html !== undefined ) {
 			el.innerHTML = html;
 		}
 		return el;
 	}
 
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', init);
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', init );
 	} else {
 		init();
 	}
-})();
+} )();

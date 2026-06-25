@@ -31,29 +31,33 @@ const v1 = {
 	 * @param {Object} props Block properties and attributes.
 	 * @return {Element} Saved HTML element.
 	 */
-	save(props) {
+	save( props ) {
 		const { question, alternatives, correctAnswer } = props.attributes;
-		const blockProps = useBlockProps.save({
+		const blockProps = useBlockProps.save( {
 			className: 'hmquiz__question',
-		});
+		} );
 
 		return (
-			<div {...blockProps} data-question="" data-correct={correctAnswer}>
+			<div
+				{ ...blockProps }
+				data-question=""
+				data-correct={ correctAnswer }
+			>
 				<RichText.Content
 					tagName="p"
 					className="hmquiz__question-text"
-					value={question}
+					value={ question }
 				/>
 				<div className="hmquiz__alternatives">
-					{alternatives.map((alt) => (
+					{ alternatives.map( ( alt ) => (
 						<button
-							key={alt.id}
+							key={ alt.id }
 							className="hmquiz__alternative"
-							data-id={alt.id}
+							data-id={ alt.id }
 						>
-							{alt.text}
+							{ alt.text }
 						</button>
-					))}
+					) ) }
 				</div>
 				<InnerBlocks.Content />
 			</div>
@@ -61,4 +65,4 @@ const v1 = {
 	},
 };
 
-export default [v1];
+export default [ v1 ];

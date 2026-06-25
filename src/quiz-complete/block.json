@@ -7,7 +7,7 @@
 	"category": "hmquiz",
 	"icon": "awards",
 	"description": "Content shown after the visitor answers all questions.",
-	"parent": ["hmquiz/quiz"],
+	"parent": [ "hmquiz/quiz" ],
 	"supports": { "html": false, "reusable": false },
 	"attributes": {
 		"enabled": { "type": "boolean", "default": true },

@@ -6,12 +6,12 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
  * @return {Element} Saved HTML element.
  */
 export default function Save() {
-	const blockProps = useBlockProps.save({
+	const blockProps = useBlockProps.save( {
 		className: 'hmquiz__question-content',
-	});
+	} );
 
 	return (
-		<div {...blockProps} data-question-content="">
+		<div { ...blockProps } data-question-content="">
 			<InnerBlocks.Content />
 		</div>
 	);

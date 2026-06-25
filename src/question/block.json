@@ -7,7 +7,7 @@
 	"category": "hmquiz",
 	"icon": "editor-help",
 	"description": "A single quiz question with multiple-choice alternatives and feedback panels.",
-	"parent": ["hmquiz/quiz"],
+	"parent": [ "hmquiz/quiz" ],
 	"supports": { "html": false, "reusable": false },
 	"attributes": {
 		"question": {

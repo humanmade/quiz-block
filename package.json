@@ -14,12 +14,6 @@
 		"lint": "npm run lint:js && npm run lint:css"
 	},
 	"devDependencies": {
-		"@babel/runtime": "^8.0.0",
-		"@typescript-eslint/eslint-plugin": "^6.21.0",
-		"@wordpress/scripts": "^28.6.0",
-		"eslint-plugin-jest": "^27.9.0",
-		"eslint-plugin-react": "^7.37.5",
-		"eslint-plugin-react-hooks": "^4.6.2",
-		"stylelint": "^14.16.1"
+		"@wordpress/scripts": "^32.5.0"
 	}
 }

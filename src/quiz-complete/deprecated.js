@@ -17,18 +17,18 @@ const v1 = {
 	 * @param {Object} props Block properties and attributes.
 	 * @return {Element} Saved HTML element.
 	 */
-	save(props) {
+	save( props ) {
 		const { enabled } = props.attributes;
-		const blockProps = useBlockProps.save({
+		const blockProps = useBlockProps.save( {
 			className: 'hmquiz__complete',
-		});
+		} );
 
 		return (
 			<div
-				{...blockProps}
+				{ ...blockProps }
 				data-quiz-complete=""
-				data-enabled={enabled ? 'true' : 'false'}
-				style={{ display: 'none' }}
+				data-enabled={ enabled ? 'true' : 'false' }
+				style={ { display: 'none' } }
 			>
 				<InnerBlocks.Content />
 			</div>
@@ -36,4 +36,4 @@ const v1 = {
 	},
 };
 
-export default [v1];
+export default [ v1 ];
