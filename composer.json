@@ -1,0 +1,23 @@
+{
+	"name": "humanmade/quiz-block",
+	"description": "Multi-step quiz plugin using Gutenberg blocks",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0+",
+	"require": {
+		"php": ">=8.2"
+	},
+	"require-dev": {
+		"humanmade/coding-standards": "^2.0",
+		"phpstan/phpstan": "^1.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"scripts": {
+		"lint": "phpcs",
+		"lint-fix": "phpcbf",
+		"phpstan": "phpstan analyse"
+	}
+}
