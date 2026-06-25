@@ -2,12 +2,13 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "hmquiz/quiz",
-	"version": "1.0.0",
 	"title": "Quiz",
 	"category": "hmquiz",
 	"icon": "list-view",
 	"description": "Multi-step quiz container. Add Quiz Question blocks inside.",
-	"supports": { "html": false },
+	"supports": {
+		"html": false
+	},
 	"viewStyle": "file:./style-index.css",
 	"editorStyle": "hmquiz-editor-style",
 	"editorScript": "file:./index.js",
@@ -18,9 +19,18 @@
 				"attributes": {
 					"question": "What is the capital of France?",
 					"alternatives": [
-						{ "id": "a", "text": "London" },
-						{ "id": "b", "text": "Paris" },
-						{ "id": "c", "text": "Berlin" }
+						{
+							"id": "a",
+							"text": "London"
+						},
+						{
+							"id": "b",
+							"text": "Paris"
+						},
+						{
+							"id": "c",
+							"text": "Berlin"
+						}
 					],
 					"correctAnswer": "b"
 				}

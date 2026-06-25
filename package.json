@@ -1,6 +1,5 @@
 {
 	"name": "@humanmade/quiz-block",
-	"version": "1.0.0",
 	"description": "Multi-step quiz plugin using Gutenberg blocks",
 	"private": true,
 	"author": "Human Made Limited",

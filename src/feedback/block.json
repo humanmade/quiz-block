@@ -2,14 +2,21 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "hmquiz/feedback",
-	"version": "1.0.0",
 	"title": "Quiz Feedback",
 	"category": "hmquiz",
 	"icon": "format-chat",
-	"parent": [ "hmquiz/question" ],
-	"supports": { "html": false, "reusable": false },
+	"parent": [
+		"hmquiz/question"
+	],
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
 	"attributes": {
-		"type": { "type": "string", "default": "correct" }
+		"type": {
+			"type": "string",
+			"default": "correct"
+		}
 	},
 	"editorScript": "file:./index.js"
 }

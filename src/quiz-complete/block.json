@@ -2,16 +2,26 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "hmquiz/quiz-complete",
-	"version": "1.0.0",
 	"title": "Quiz Completion Screen",
 	"category": "hmquiz",
 	"icon": "awards",
 	"description": "Content shown after the visitor answers all questions.",
-	"parent": [ "hmquiz/quiz" ],
-	"supports": { "html": false, "reusable": false },
+	"parent": [
+		"hmquiz/quiz"
+	],
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
 	"attributes": {
-		"enabled": { "type": "boolean", "default": true },
-		"backgroundColor": { "type": "string", "default": "" }
+		"enabled": {
+			"type": "boolean",
+			"default": true
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		}
 	},
 	"editorScript": "file:./index.js"
 }
