@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Quiz completion screen block (`hmquiz/quiz-complete`) with show/hide toggle and background color picker
 - CSS flexbox ordering to display question content, alternatives, and feedback in the correct visual sequence regardless of DOM order
 - `deprecated` migration for blocks across save function changes
-- Full i18n support via `wp.i18n` (JS) and `load_plugin_textdomain` (PHP)
+- i18n groundwork: `load_plugin_textdomain` (PHP) and `wp.i18n` for editor block strings; several frontend strings remain hard-coded
 - Accessibility: `:focus-visible` styles, ARIA attributes on progress bar, `prefers-reduced-motion` support
 
 [Unreleased]: https://github.com/humanmade/quiz-block/compare/v1.0.0...HEAD
