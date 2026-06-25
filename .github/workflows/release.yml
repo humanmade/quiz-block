@@ -43,16 +43,12 @@ jobs:
                     --exclude="dist/*" \
                     --exclude="src/*" \
                     --exclude="composer.json" \
-                    --exclude="composer.lock" \
                     --exclude="package.json" \
                     --exclude="package-lock.json" \
                     --exclude="phpcs.xml" \
                     --exclude="phpstan.neon" \
-                    --exclude="eslint.config.mjs" \
-                    --exclude=".stylelintrc.json" \
-                    --exclude=".gitignore" \
-                    --exclude="CHANGELOG.md" \
-                    --exclude="languages/.gitkeep"
+                    --exclude="eslint.config.js" \
+                    --exclude=".gitignore"
 
             - name: Create GitHub Release
               uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
