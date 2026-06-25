@@ -80,7 +80,7 @@ function register_blocks(): void {
 	];
 
 	foreach ( $blocks as $block ) {
-		register_block_type( HMQUIZ_DIR . '/build/' . $block );
+		register_block_type_from_metadata( HMQUIZ_DIR . '/build/' . $block );
 	}
 
 	// Load JS translations for blocks that use wp.i18n (__).
