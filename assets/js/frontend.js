@@ -64,6 +64,14 @@
 		const progressBar = progressEl.querySelector( '.hmquiz__progress-bar' );
 		const currentNumEl = progressEl.querySelector( '.hmquiz__current-num' );
 
+		// ── Live region for screen reader announcements ───────────────────────
+		const liveEl = makeEl( 'div', {
+			'aria-live': 'polite',
+			'aria-atomic': 'true',
+			style: 'position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap',
+		} );
+		quizEl.appendChild( liveEl );
+
 		// ── Per-question setup ───────────────────────────────────────────────
 		questions.forEach( function ( questionEl, index ) {
 			// Hide all questions except the first via style.display (not hidden attr).
@@ -144,6 +152,11 @@
 							);
 						}
 
+						// Announce result to screen readers.
+						liveEl.textContent = isCorrect
+							? 'Correct!'
+							: 'Incorrect.';
+
 						// Show next/finish button.
 						nextBtn.style.display = '';
 						nextBtn.classList.add( 'hmquiz__next-btn--visible' );
@@ -165,6 +178,8 @@
 						current,
 						total
 					);
+					liveEl.textContent =
+						'Question ' + ( current + 1 ) + ' of ' + total + '.';
 					quizEl.scrollIntoView( {
 						behavior: 'smooth',
 						block: 'start',
@@ -175,7 +190,8 @@
 						questions,
 						progressFill,
 						progressBar,
-						customComplete
+						customComplete,
+						liveEl
 					);
 				}
 			} );
@@ -218,8 +234,16 @@
 	 * @param {HTMLElement|null} fill           Progress fill element.
 	 * @param {HTMLElement|null} bar            Progress bar element.
 	 * @param {HTMLElement|null} customComplete The [data-quiz-complete] block, or null.
+	 * @param {HTMLElement|null} liveEl         aria-live region for announcements.
 	 */
-	function showCompletion( quizEl, questions, fill, bar, customComplete ) {
+	function showCompletion(
+		quizEl,
+		questions,
+		fill,
+		bar,
+		customComplete,
+		liveEl
+	) {
 		// Hide all questions.
 		questions.forEach( function ( q ) {
 			q.style.display = 'none';
@@ -231,6 +255,9 @@
 		}
 		if ( bar ) {
 			bar.setAttribute( 'aria-valuenow', questions.length );
+		}
+		if ( liveEl ) {
+			liveEl.textContent = 'Quiz complete!';
 		}
 
 		if ( customComplete ) {
