@@ -180,10 +180,6 @@
 					);
 					liveEl.textContent =
 						'Question ' + ( current + 1 ) + ' of ' + total + '.';
-					quizEl.scrollIntoView( {
-						behavior: 'smooth',
-						block: 'start',
-					} );
 				} else {
 					showCompletion(
 						quizEl,
@@ -269,10 +265,6 @@
 				}
 				customComplete.style.display = '';
 				customComplete.classList.add( 'hmquiz__complete--visible' );
-				quizEl.scrollIntoView( {
-					behavior: 'smooth',
-					block: 'start',
-				} );
 			}
 			// If disabled: quiz ends silently (no completion UI).
 		} else {
@@ -289,10 +281,6 @@
 					'.</p>'
 			);
 			quizEl.appendChild( fallback );
-			quizEl.scrollIntoView( {
-				behavior: 'smooth',
-				block: 'start',
-			} );
 		}
 	}
 
